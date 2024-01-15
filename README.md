@@ -1,3 +1,11 @@
 # GoIT React Lessons
 
-## Each branch will contain each lessons in this module. Please, take a look :)
+## Module 1 Lesson 1 (Introduction to React)
+
+- Web Applications
+- React Library
+- Tools
+- JSX
+- Components
+- Conditional Render
+- Collections
