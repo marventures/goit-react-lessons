@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import './RecipeListItem.css';
+
 export const RecipeListItem = ({
   name,
   time,
@@ -6,44 +8,34 @@ export const RecipeListItem = ({
   calories,
   image,
   difficulty,
+  isEasy,
 }) => {
-  const isLoggedIn = true;
-
   return (
-    <li>
-      {/* Ternary */}
-      {isLoggedIn ? <p>User is Logged In</p> : <p>User is Logged Out</p>}
-
-      {/* Logical And */}
-      {isLoggedIn && <p>User is Logged In</p>}
-
+    <li className="recipe-list-item">
       <img src={image} alt="" width="240" />
       <h2>{name}</h2>
 
-      <div>
-        <div>
+      <div className="recipe-info">
+        <div className="info-block">
           <span>Icon</span>
           <p>{time} minutes</p>
         </div>
 
-        <div>
+        <div className="info-block">
           <span>Icon</span>
           <p>{servings} servings</p>
         </div>
 
-        <div>
+        <div className="info-block">
           <span>Icon</span>
           <p>{calories} calories</p>
         </div>
 
-        <div>
-          <h3>Difficulty</h3>
-          <div>
-            <span>Easy</span>
-            <span>Medium</span>
-            <span>Hard</span>
-          </div>
+        <div className="info-block">
+          <p>Difficulty: {difficulty}</p>
         </div>
+
+        <span className="status"></span>
       </div>
     </li>
   );
@@ -56,4 +48,5 @@ RecipeListItem.propTypes = {
   calories: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   difficulty: PropTypes.oneOf(['easy', 'medium', 'hard']).isRequired,
+  isEasy: PropTypes.bool.isRequired,
 };

@@ -1,11 +1,9 @@
 # GoIT React Lessons
 
-## Module 1 Lesson 1 (Introduction to React)
+## Module 1 Lesson 2 (Stylization)
 
-- Web Applications
-- React Library
-- Tools
-- JSX
-- Components
-- Conditional Render
-- Collections
+- Inline Styles
+- Vanilla CSS
+- CSS Modules
+- Style normalization
+- React Icons
