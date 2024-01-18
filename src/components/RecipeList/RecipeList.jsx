@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { RecipeListItem } from 'components/RecipeListItem/RecipeListItem';
-import './RecipeList.css';
+
+import s from './RecipeList.module.css';
 
 export const RecipeList = ({ recipes }) => {
   return (
-    <ul className="recipe-list">
+    <ul className={s.recipeList}>
       {recipes.map(
         ({ id, name, time, servings, calories, image, difficulty, isEasy }) => (
           <RecipeListItem

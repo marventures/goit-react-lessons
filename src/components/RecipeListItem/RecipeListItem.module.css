@@ -1,4 +1,4 @@
-.recipe-list-item {
+.recipeListItem {
   padding: 15px 30px;
   margin-bottom: 15px;
   display: flex;
@@ -12,13 +12,13 @@
     0px 1px 6px 0px rgba(46, 47, 66, 0.08);
 }
 
-.recipe-info {
+.recipeInfo {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.info-block {
+.infoBlock {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -28,13 +28,25 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: green;
 }
 
-/* .easy {
+.easy {
+  composes: status;
   background-color: green;
 }
 
 .notEasy {
+  composes: status;
   background-color: red;
-} */
+}
+
+.difficulty {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.pieIcon {
+  background-color: orange;
+  fill: white;
+}
