@@ -1,9 +1,7 @@
 # GoIT React Lessons
 
-## Module 1 Lesson 2 (Stylization)
+## Module 2 Lesson 3 (Events and States)
 
-- Inline Styles
-- Vanilla CSS
-- CSS Modules
-- Style normalization
-- React Icons
+- Class Components
+- Events
+- Internal state of the component
