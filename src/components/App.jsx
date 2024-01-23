@@ -50,24 +50,3 @@ export class App extends Component {
     );
   }
 }
-
-// export class App extends Component {
-//   handleClick = () => {
-//     console.log('Hello Im Clicked');
-//   };
-
-//   // whenever you use parameter with handler, use a callback first on onClick prop
-//   handleClickTest = name => {
-//     console.log(`Hello! Im Clicked by ${name}`);
-//   };
-
-//   render() {
-//     return (
-//       <>
-//         <RecipeList recipes={recipes} />
-//         <button onClick={this.handleClick}>Click Me</button>
-//         <button onClick={() => this.handleClickTest('marvin')}>Click Me</button>
-//       </>
-//     );
-//   }
-// }
