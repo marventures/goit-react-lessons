@@ -1,52 +1,39 @@
-import { RecipeList } from './RecipeList/RecipeList';
-import recipes from '../data/recipes.json';
 import { Component } from 'react';
-import { Statistics } from './Statistics/Statistics';
-import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
-import { Section } from './Section/Section';
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
-  // initial state
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
   };
 
-  countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
-    return good + neutral + bad;
-  };
-
-  handleClick = type => {
+  addContact = newContact => {
     this.setState(prevState => ({
-      ...prevState,
-      [type]: prevState[type] + 1,
+      contacts: [...prevState.contacts, newContact],
+    }));
+  };
+
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
 
   render() {
-    const { good, neutral, bad } = this.state;
-    const total = this.countTotalFeedback();
-    const options = ['good', 'neutral', 'bad'];
-
+    const { contacts } = this.state;
     return (
-      <>
-        <RecipeList recipes={recipes} />
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm addContact={this.addContact} contacts={contacts} />
 
-        <Section title="Please leave feedback">
-          {/* Create DOM to FeedbackOptions Component */}
-          <FeedbackOptions
-            options={options}
-            onLeaveFeedback={this.handleClick}
-          />
-        </Section>
-
-        <Section title="Statistics">
-          {/* Create DOM to Statistics Component */}
-          <Statistics good={good} neutral={neutral} bad={bad} total={total} />
-        </Section>
-      </>
+        <h2>Contacts</h2>
+        <ContactList contacts={contacts} deleteContact={this.deleteContact} />
+      </div>
     );
   }
 }

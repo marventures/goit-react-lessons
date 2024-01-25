@@ -1,7 +1,5 @@
 # GoIT React Lessons
 
-## Module 2 Lesson 3 (Events and States)
+## Module 2 Lesson 4 (Forms)
 
-- Class Components
-- Events
-- Internal state of the component
+- Forms
