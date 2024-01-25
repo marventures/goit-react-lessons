@@ -9,19 +9,52 @@ export class ContactForm extends Component {
 
   handleNameChange = e => {
     // implement this method
+    this.setState({
+      name: e.target.value,
+    });
   };
 
   handleNumberChange = e => {
     // implement this method
+    this.setState({
+      number: e.target.value,
+    });
   };
 
   handleSubmit = e => {
     // implement this method
-    // prevent the form from submitting
+    // prevent the form from refreshing when submitted
+    e.preventDefault();
+    const { name, number } = this.state;
+    const { addContact, contacts } = this.props;
+
     // if name and number is empty, it will not submit(return)
+    if (name.trim() === '' || number.trim() === '') {
+      return;
+    }
+
     // if existing contact set an alert, it will not submit(return)
+    const existingContact = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (existingContact) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
+
     // Add Contact
+    addContact({
+      id: nanoid(),
+      name: name.trim(),
+      number: number.trim(),
+    });
+
     // Reset Form Fields upon submitting
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   render() {
@@ -39,6 +72,7 @@ export class ContactForm extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
             required
             //must have value prop when onChange prop is used
+            value={name}
             onChange={this.handleNameChange}
           />
         </label>
@@ -53,9 +87,11 @@ export class ContactForm extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             //must have value prop when onChange prop is used
+            value={number}
             onChange={this.handleNumberChange}
           />
         </label>
+
         <button type="submit">Add Contact</button>
       </form>
     );
