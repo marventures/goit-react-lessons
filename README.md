@@ -1,5 +1,5 @@
 # GoIT React Lessons
 
-## Module 2 Lesson 4 (Forms)
+## Module 3 Lesson 5 (Lifecycle)
 
-- Forms
+- Lifecycle

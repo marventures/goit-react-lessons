@@ -8,21 +8,18 @@ export class ContactForm extends Component {
   };
 
   handleNameChange = e => {
-    // implement this method
     this.setState({
       name: e.target.value,
     });
   };
 
   handleNumberChange = e => {
-    // implement this method
     this.setState({
       number: e.target.value,
     });
   };
 
   handleSubmit = e => {
-    // implement this method
     // prevent the form from refreshing when submitted
     e.preventDefault();
     const { name, number } = this.state;

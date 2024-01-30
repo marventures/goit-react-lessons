@@ -12,6 +12,16 @@ export class App extends Component {
     ],
   };
 
+  // implement this code
+  componentDidMount() {
+    // If 'contacts' key in LS is not null, we write it in the 'contacts' state
+  }
+
+  // implement this code
+  componentDidUpdate() {
+    // if 'contacts' state is updated, set value to localStorage
+  }
+
   addContact = newContact => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
