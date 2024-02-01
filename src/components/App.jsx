@@ -24,6 +24,15 @@ export class App extends Component {
 
   fetchImages = async (search, page) => {
     // implement this code
+    try {
+      // fetch data from API
+      // Display an error message, if there is no match with the search
+      // Display a success message if it's the first page
+      // Display a message if page is already at the end of data (12 = per_page based on API call)
+      // Update the state with the new images
+    } catch {
+    } finally {
+    }
   };
 
   handleSubmit = e => {
