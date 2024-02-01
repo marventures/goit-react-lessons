@@ -3,6 +3,8 @@ import { Button } from './Button/Button';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Searchbar/Searchbar';
 import css from './App.module.css';
+import { getAPI } from '../pixabay-api';
+import toast, { Toaster } from 'react-hot-toast';
 
 export class App extends Component {
   state = {
@@ -25,13 +27,48 @@ export class App extends Component {
   fetchImages = async (search, page) => {
     // implement this code
     try {
+      this.setState({ isLoading: true });
       // fetch data from API
+
+      const fetchedImages = await getAPI(search, page);
+
+      const { hits, totalHits } = fetchedImages;
+
+      console.log(hits, totalHits);
+
       // Display an error message, if there is no match with the search
+      if (hits.length === 0) {
+        toast.error(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+        return;
+      }
+
       // Display a success message if it's the first page
+      if (page === 1) {
+        toast.success(`Hooray! We found ${totalHits} images!`);
+      }
+
       // Display a message if page is already at the end of data (12 = per_page based on API call)
+      if (page * 12 >= totalHits) {
+        this.setState({ isEnd: true });
+        toast("We're sorry, but you've reached the end of search results.", {
+          icon: '👏',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        });
+      }
       // Update the state with the new images
+      this.setState(prevState => ({
+        images: [...prevState.images, ...hits],
+      }));
     } catch {
+      this.setState({ isError: true });
     } finally {
+      this.setState({ isLoading: false });
     }
   };
 
@@ -59,10 +96,13 @@ export class App extends Component {
         {/* Render ImageGallery Component when there is atleast one match of images */}
         {images.length >= 1 && <ImageGallery photos={images} />}
 
-        {/* Render Button Component when there is atleast a second page or more and it's not the end of page */}
-        {images.length >= 2 && !isEnd && <Button onClick={this.handleClick} />}
+        {/* Render Button Component when there is atleast a page or more and it's not the end of page */}
+        {images.length >= 1 && !isEnd && <Button onClick={this.handleClick} />}
         {isLoading && <h2>Loading......</h2>}
-        {isError && alert('Oops, something went wrong! Reload this page!')}
+        {isError &&
+          toast.error('Oops, something went wrong! Reload this page!')}
+
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
     );
   }
