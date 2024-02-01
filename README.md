@@ -1,5 +1,5 @@
 # GoIT React Lessons
 
-## Module 3 Lesson 5 (Lifecycle)
+## Module 3 Lesson 6 (HTTP Requests)
 
-- Lifecycle
+- HTTP Requests

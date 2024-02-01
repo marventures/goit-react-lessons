@@ -1,100 +1,54 @@
 import { Component } from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
+import { Button } from './Button/Button';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Searchbar } from './Searchbar/Searchbar';
+import css from './App.module.css';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    search: '',
+    page: 1,
+    images: [],
+    isLoading: false,
+    isError: false,
+    isEnd: false,
   };
 
-  // componentDidMount() invoked after a component has been rendered to the DOM
-  // implement this code
-  componentDidMount() {
-    // If 'contacts' key in LS is not null, we write it in the 'contacts' state
-    const savedContacts = localStorage.getItem('contacts');
+  componentDidUpdate = async (_prevProps, prevState) => {
+    const { search, page } = this.state;
 
-    if (savedContacts !== null) {
-      this.setState({ contacts: JSON.parse(savedContacts) });
+    if (prevState.search !== search || prevState.page !== page) {
+      await this.fetchImages(search, page);
     }
-
-    // else {
-    //   this.setState({
-    //     contacts: [
-    //       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    //       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    //       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    //       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    //     ],
-    //   });
-    // }
-
-    console.log('componentDidMount()');
-  }
-
-  // componentDidUpdate() after a component is updated
-  // implement this code
-  componentDidUpdate(_prevProps, prevState) {
-    // if 'contacts' state is updated, set value to localStorage
-    const { contacts } = this.state;
-
-    if (contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-    }
-
-    console.log('componentDidUpdate()');
-  }
-
-  addContact = newContact => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
   };
 
-  deleteContact = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-    }));
+  fetchImages = async (search, page) => {
+    // implement this code
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const newSearch = e.target.search.value.trim().toLowerCase();
+    this.setState({ search: newSearch, page: 1, images: [] });
+  };
+
+  handleClick = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   render() {
-    console.log('render()');
-    const { contacts } = this.state;
+    const { images, isLoading, isError, isEnd } = this.state;
     return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm addContact={this.addContact} contacts={contacts} />
+      <div className={css.app}>
+        <Searchbar onSubmit={this.handleSubmit} />
+        {/* Render ImageGallery Component when there is atleast one match of images */}
+        {images.length >= 1 && <ImageGallery photos={images} />}
 
-        <h2>Contacts</h2>
-        <ContactList contacts={contacts} deleteContact={this.deleteContact} />
+        {/* Render Button Component when there is atleast a second page or more and it's not the end of page */}
+        {images.length >= 2 && !isEnd && <Button onClick={this.handleClick} />}
+        {isLoading && <h2>Loading......</h2>}
+        {isError && alert('Oops, something went wrong! Reload this page!')}
       </div>
     );
   }
 }
-
-/*
-component mounted?
-       \
-initial render()
-       \
-componentDidMount()
-  
-
-props/states are changed?/forceUpdate()
-       \
-re - render()
-
-
-component WILL remove/unmount?
-        \
-componentWillUnmount()
-
-
-component updated?
-        | 
-componentDidUpdate()
-*/
