@@ -28,8 +28,14 @@ export class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    const { search } = this.state;
     const newSearch = e.target.search.value.trim().toLowerCase();
-    this.setState({ search: newSearch, page: 1, images: [] });
+
+    // if new search string is different from the current search string saved in state
+    if (newSearch !== search) {
+      this.setState({ search: newSearch, page: 1, images: [] });
+    }
   };
 
   handleClick = () => {
