@@ -25,7 +25,6 @@ export class App extends Component {
   };
 
   fetchImages = async (search, page) => {
-    // implement this code
     try {
       this.setState({ isLoading: true });
       // fetch data from API

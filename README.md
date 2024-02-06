@@ -1,5 +1,8 @@
 # GoIT React Lessons
 
-## Module 3 Lesson 6 (HTTP Requests)
+## Module 4 Lesson 7 (React Hooks)
 
-- HTTP Requests
+- Introduction
+- Hook useState
+- Hook useEffect
+- Custom Hooks
