@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from './Button/Button';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Searchbar/Searchbar';
@@ -6,27 +6,32 @@ import css from './App.module.css';
 import { getAPI } from '../pixabay-api';
 import toast, { Toaster } from 'react-hot-toast';
 
-export class App extends Component {
-  state = {
-    search: '',
-    page: 1,
-    images: [],
-    isLoading: false,
-    isError: false,
-    isEnd: false,
-  };
+export const App = () => {
+  const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
 
-  componentDidUpdate = async (_prevProps, prevState) => {
-    const { search, page } = this.state;
+  useEffect(() => {
+    if (search === '') return;
 
-    if (prevState.search !== search || prevState.page !== page) {
-      await this.fetchImages(search, page);
-    }
-  };
+    (async () => {
+      await fetchImages(search, page);
+    })();
 
-  fetchImages = async (search, page) => {
+    // cleanup function|| componentWillUnmount() || optional
+    // return () => {};
+
+    // if dependency array is empty, useEffect hook will be called on initial mount, componentDidMount() equivalent
+    // if dependency array has values, useEffect hook will be called if the states are changed in it, componentDidUpdate() equivalent;
+    // if we omit dependency array, useEffect hook will be called every render, bad practice! (app may crash)
+  }, [search, page]);
+
+  const fetchImages = async (search, page) => {
     try {
-      this.setState({ isLoading: true });
+      setIsLoading(true);
       // fetch data from API
 
       const fetchedImages = await getAPI(search, page);
@@ -50,7 +55,7 @@ export class App extends Component {
 
       // Display a message if page is already at the end of data (12 = per_page based on API call)
       if (page * 12 >= totalHits) {
-        this.setState({ isEnd: true });
+        setIsEnd(true);
         toast("We're sorry, but you've reached the end of search results.", {
           icon: '👏',
           style: {
@@ -61,48 +66,43 @@ export class App extends Component {
         });
       }
       // Update the state with the new images
-      this.setState(prevState => ({
-        images: [...prevState.images, ...hits],
-      }));
+      setImages(prevState => [...prevState, ...hits]);
     } catch {
-      this.setState({ isError: true });
+      setIsError(true);
     } finally {
-      this.setState({ isLoading: false });
+      setIsLoading(false);
     }
   };
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    const { search } = this.state;
     const newSearch = e.target.search.value.trim().toLowerCase();
 
     // if new search string is different from the current search string saved in state
     if (newSearch !== search) {
-      this.setState({ search: newSearch, page: 1, images: [] });
+      setSearch(newSearch);
+      setPage(1);
+      setImages([]);
     }
   };
 
-  handleClick = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
+  const handleClick = () => {
+    setPage(prevState => prevState + 1);
   };
 
-  render() {
-    const { images, isLoading, isError, isEnd } = this.state;
-    return (
-      <div className={css.app}>
-        <Searchbar onSubmit={this.handleSubmit} />
-        {/* Render ImageGallery Component when there is atleast one match of images */}
-        {images.length >= 1 && <ImageGallery photos={images} />}
+  return (
+    <div className={css.app}>
+      <Searchbar onSubmit={handleSubmit} />
+      {/* Render ImageGallery Component when there is atleast one match of images */}
+      {images.length >= 1 && <ImageGallery photos={images} />}
 
-        {/* Render Button Component when there is atleast a page or more and it's not the end of page */}
-        {images.length >= 1 && !isEnd && <Button onClick={this.handleClick} />}
-        {isLoading && <h2>Loading......</h2>}
-        {isError &&
-          toast.error('Oops, something went wrong! Reload this page!')}
+      {/* Render Button Component when there is atleast a page or more and it's not the end of page */}
+      {images.length >= 1 && !isEnd && <Button onClick={handleClick} />}
+      {isLoading && <h2>Loading......</h2>}
+      {isError && toast.error('Oops, something went wrong! Reload this page!')}
 
-        <Toaster position="top-right" reverseOrder={false} />
-      </div>
-    );
-  }
-}
+      <Toaster position="top-right" reverseOrder={false} />
+    </div>
+  );
+};
