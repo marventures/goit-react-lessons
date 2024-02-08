@@ -1,8 +1,7 @@
 # GoIT React Lessons
 
-## Module 4 Lesson 7 (React Hooks)
+## Module 4 Lesson 8 (Context and Refs)
 
-- Introduction
-- Hook useState
-- Hook useEffect
-- Custom Hooks
+- Context and useContext
+- useRef Hook
+- useMemo Hook
