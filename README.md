@@ -1,7 +1,11 @@
 # GoIT React Lessons
 
-## Module 4 Lesson 8 (Context and Refs)
+## Module 5 Lesson 9 (Routing Part 1)
 
-- Context and useContext
-- useRef Hook
-- useMemo Hook
+- Routing
+- BrowserRouter Component
+- Route and Routes Components
+- Link and NavLink Components
+- URL-parameters
+- Nested Routes
+- Index Routes

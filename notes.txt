@@ -1,0 +1,9 @@
+1. npm i react-router-dom
+2. BrowserRouter pathname
+3. Routes and Route (group of Route must be wrapped by Routes)
+4. Nested Routes
+5. Index Route (only nested route can be indexed)
+6. URL-parameters
+7. SharedLayout Technique 
+8. Outlet
+9. Link and NavLink
