@@ -9,7 +9,7 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <BrowserRouter basename="/react-homework-template">
+    <BrowserRouter basename="/goit-react-hw-05">
       <App />
     </BrowserRouter>
   </StrictMode>
