@@ -2,14 +2,7 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 
-// import { AboutPage } from '../pages/AboutPage/AboutPage';
-// import { HomePage } from '../pages/HomePage/HomePage';
-// import { ProductDetailsPage } from '../pages/ProductDetailsPage/ProductDetailsPage';
-// import { ProductsPage } from '../pages/ProductsPage/ProductsPage';
-// import { Mission } from './Mission/Mission';
-// import { Team } from './Team/Team';
-// import { Reviews } from './Reviews/Reviews';
-
+// lazy load should be a default export
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const AboutPage = lazy(() => import('../pages/AboutPage/AboutPage'));
 const Mission = lazy(() => import('./Mission/Mission'));
