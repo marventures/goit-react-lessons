@@ -1,6 +1,7 @@
+import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-export const AboutPage = () => {
+const AboutPage = () => {
   return (
     <main>
       <h1>About Us</h1>
@@ -28,8 +29,13 @@ export const AboutPage = () => {
           <Link to="reviews">Go through the reviews</Link>
         </li>
       </ul>
-      {/* Outlet should be used in parent route elements to render their child route elements*/}
-      <Outlet />
+
+      <Suspense fallback={<div>Loading page...</div>}>
+        {/* Outlet should be used in parent route elements to render their child route elements*/}
+        <Outlet />
+      </Suspense>
     </main>
   );
 };
+
+export default AboutPage;
