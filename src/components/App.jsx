@@ -14,7 +14,7 @@ export const App = () => {
       <hr />
       <hr />
 
-      <Bank />
+      {/* <Bank /> */}
       {/* <p>Current bal: {balance}</p> */}
     </div>
   );
