@@ -5,7 +5,7 @@ const localeInitialState = {
 // Redux reducer function responsible for managing the state related to the localization (locale) of the application
 export const localeReducer = (state = localeInitialState, action) => {
   switch (action.type) {
-    case 'locale/changeLang':
+    case 'locale/changeLang1':
       return {
         ...state,
         lang: action.payload,
@@ -19,7 +19,7 @@ export const localeReducer = (state = localeInitialState, action) => {
 export const changeLang = newLang => {
   return {
     // Describes the type of action being dispatched
-    type: 'locale/changeLang',
+    type: 'locale/changeLang1',
 
     // Contains the actual data associated with the action
     payload: newLang,
