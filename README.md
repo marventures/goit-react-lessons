@@ -1,8 +1,12 @@
 # GoIT React Lessons
 
-## Module 5 Lesson 10 (Routing Part 2)
+## Module 6 Lesson 11 (Redux Fundamentals)
 
-- Imperative Navigation
-- Query String
-- Location Object
-- Code Splitting
+- State Management
+- Task Manager
+- Installation
+- Store
+- Redux DevTools
+- Store Subscription
+- Actions
+- Reducers
