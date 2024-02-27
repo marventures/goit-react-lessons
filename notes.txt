@@ -1,6 +1,12 @@
-1. Code Splitting (lazy load and default export)
-2. Suspense Component
-3. useSearchParams() in ProductsPage
-4. useLocation() in ProductDetailsPage
-5. useLocation() in ProductListItem
+1. Redux Core (https://redux.js.org/)
+2. React-Redux (https://react-redux.js.org/)
+3. Redux DevTools (Chrome Extension , @redux-devtools/extension)
+4. React Redux Provider
+5. store
+6. slices (initial state, reducer, atleast 1 action)
+7. selector (state variable), useSelector()
+8. redux folder (slice, selector, store)
+9. useDispatch()
+
+
 

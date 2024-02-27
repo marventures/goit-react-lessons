@@ -4,7 +4,7 @@ import { balanceReducer } from './balanceSlice';
 import { localeReducer } from './localeSlice';
 
 const rootReducer = combineReducers({
-  // balance: balanceReducer,
+  balance: balanceReducer,
   locale: localeReducer,
 });
 

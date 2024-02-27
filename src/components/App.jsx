@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { LangSwitcher } from './LangSwitcher';
 import { Bank } from './Bank';
-import { getLang } from '../redux/selector';
+import { getLang, getBalance } from '../redux/selector';
 
 export const App = () => {
   const lang = useSelector(getLang);
 
-  // const balance = useSelector(state => state.balance.value);
+  const balance = useSelector(getBalance);
 
   return (
     <div>
@@ -16,8 +16,8 @@ export const App = () => {
       <hr />
       <hr />
 
-      {/* <Bank /> */}
-      {/* <p>Current bal: {balance}</p> */}
+      <Bank />
+      <p>Current bal: {balance}</p>
     </div>
   );
 };
