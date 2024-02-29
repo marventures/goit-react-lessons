@@ -1,12 +1,10 @@
 # GoIT React Lessons
 
-## Module 6 Lesson 11 (Redux Fundamentals)
+## Module 6 Lesson 12 (Redux Toolkit)
 
-- State Management
-- Task Manager
+- Redux Toolkit
 - Installation
-- Store
-- Redux DevTools
-- Store Subscription
-- Actions
-- Reducers
+- configureStore
+- createAction
+- createReducer
+- createSlice

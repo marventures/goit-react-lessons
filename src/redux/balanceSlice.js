@@ -1,8 +1,26 @@
+import { createAction, createReducer, createSlice } from '@reduxjs/toolkit';
+
 const balanceInitialState = {
   value: 50,
 };
 
-// Redux reducer function responsible for managing the state related to the the balance of the application
+// -------------------------------------------------------
+
+// Redux Core:
+export const deposit = value => {
+  return {
+    type: 'balance/deposit',
+    payload: value,
+  };
+};
+
+export const withdraw = value => {
+  return {
+    type: 'balance/withdraw',
+    payload: value,
+  };
+};
+
 export const balanceReducer = (state = balanceInitialState, action) => {
   switch (action.type) {
     case 'balance/deposit':
@@ -22,18 +40,42 @@ export const balanceReducer = (state = balanceInitialState, action) => {
   }
 };
 
-// actions -> plain js objects to described what will happen to our application
-export const deposit = value => {
-  return {
-    type: 'balance/deposit',
-    payload: value,
-  };
-};
+// -------------------------------------------------------
 
-// actions -> plain js objects to described what will happen to our application
-export const withdraw = value => {
-  return {
-    type: 'balance/withdraw',
-    payload: value,
-  };
-};
+// Redux Toolkit: createAction()
+// export const deposit = createAction('balance/deposit');
+// export const withdraw = createAction('balance/withdraw');
+
+// -------------------------------------------------------
+
+// Redux Toolkit: createReducer()
+// export const balanceReducer = createReducer(balanceInitialState, builder =>
+//   builder
+//     .addCase(deposit, (state, action) => {
+//       state.value += action.payload;
+//     })
+//     .addCase(withdraw, (state, action) => {
+//       state.value -= action.payload;
+//     })
+// );
+
+// -------------------------------------------------------
+
+// Redux Toolkit: createSlice()
+// const balanceSlice = createSlice({
+//   name: 'balance',
+//   initialState: {
+//     value: 50,
+//   },
+//   reducers: {
+//     deposit: (state, action) => {
+//       state.value += action.payload;
+//     },
+//     withdraw: (state, action) => {
+//       state.value -= action.payload;
+//     },
+//   },
+// });
+
+// export const { deposit, withdraw } = balanceSlice.actions;
+// export const balanceReducer = balanceSlice.reducer;
