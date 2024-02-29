@@ -10,8 +10,8 @@ export const App = () => {
 
   return (
     <div>
-      <LangSwitcher />
-      <p>Current lang: {lang}</p>
+      {/* <LangSwitcher />
+      <p>Current lang: {lang}</p> */}
       <hr />
       <hr />
       <hr />
