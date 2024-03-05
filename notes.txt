@@ -1,12 +1,7 @@
 1. Redux Toolkit (https://redux-toolkit.js.org/)
-2. React-Redux (https://react-redux.js.org/)
-3. Redux DevTools (Chrome Extension)
-4. React Redux Provider
-5. configureStore()
-6. createAction()
-7. createReducer()
-8. createSlice()
-9. redux-persist
+2. MockAPI
+3. operations
+4. createAsyncThunk
 
 
 

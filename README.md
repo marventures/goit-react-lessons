@@ -1,10 +1,7 @@
 # GoIT React Lessons
 
-## Module 6 Lesson 12 (Redux Toolkit)
+## Module 7 Lesson 13 (Async Redux)
 
-- Redux Toolkit
-- Installation
-- configureStore
-- createAction
-- createReducer
-- createSlice
+- Asynchronous Operations
+- Operations
+- createAsyncThunk
