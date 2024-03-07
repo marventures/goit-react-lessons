@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTask, fetchTasks } from '../redux/tasks/tasksOperations';
+// prettier-ignore
+import { selectTasks, selectIsLoading, selectError } from '../redux/tasks/tasksSelector';
 
 export const TaskList = () => {
-  const tasks = useSelector(state => state.tasks.items);
-  const isLoading = useSelector(state => state.tasks.isLoading);
-  const error = useSelector(state => state.tasks.error);
+  const tasks = useSelector(selectTasks);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   const dispatch = useDispatch();
 
