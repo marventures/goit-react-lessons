@@ -4,8 +4,8 @@ import { deleteTask, fetchTasks } from '../redux/tasks/tasksOperations';
 
 export const TaskList = () => {
   const tasks = useSelector(state => state.tasks.items);
-  const isLoading = useSelector(state => state.tasks.error);
-  const error = useSelector(state => state.tasks.isLoading);
+  const isLoading = useSelector(state => state.tasks.isLoading);
+  const error = useSelector(state => state.tasks.error);
 
   const dispatch = useDispatch();
 
