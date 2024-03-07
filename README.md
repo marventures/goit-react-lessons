@@ -1,7 +1,8 @@
 # GoIT React Lessons
 
-## Module 7 Lesson 13 (Async Redux)
+## Module 7 Lesson 14 (Selector Optimization)
 
-- Asynchronous Operations
-- Operations
-- createAsyncThunk
+- selectors
+- Naming
+- compound selectors
+- optimization
