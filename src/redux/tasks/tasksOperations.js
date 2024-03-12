@@ -1,34 +1,48 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Please create your own personal backend for development with the UI service mockapi.io
-// REFERENCE: https://mockapi.io/
-axios.defaults.baseURL = 'https://65e6c47b53d564627a8ceadd.mockapi.io';
-
-// read
+/*
+ *  GET @ /tasks
+ */
 export const fetchTasks = createAsyncThunk(
-  'tasks/fetch',
+  'tasks/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/tasks');
-      return response.data;
+      const res = await axios.get('/tasks');
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// delete
+/*
+ * POST @ /tasks
+ * body: { text }
+ */
+export const addTask = createAsyncThunk(
+  'tasks/addTask',
+  async ({ text }, thunkAPI) => {
+    try {
+      const response = await axios.post('/tasks', { text });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+/*
+ * DELETE @ /tasks/:id
+ */
 export const deleteTask = createAsyncThunk(
-  'tasks/delete',
+  'tasks/deleteTask',
   async (taskId, thunkAPI) => {
     try {
       const response = await axios.delete(`/tasks/${taskId}`);
       return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
-
-// RD

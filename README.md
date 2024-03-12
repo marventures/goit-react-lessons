@@ -1,8 +1,7 @@
 # GoIT React Lessons
 
-## Module 7 Lesson 14 (Selector Optimization)
+## Module 8 Lesson 15 (Users Part 1)
 
-- selectors
-- Naming
-- compound selectors
-- optimization
+- Accounts
+- access rights
+- JSON Web Token
