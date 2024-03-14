@@ -1,11 +1,3 @@
-PART 1
-1. redux/auth
-2. authOperations
-3. hooks/useAuth
-4. redux-persist for auth token
-5. controlled form/ uncontrolled
-
-
 PART 2
 1. <Header>
 2. Navigation(/tasks if logged in)
