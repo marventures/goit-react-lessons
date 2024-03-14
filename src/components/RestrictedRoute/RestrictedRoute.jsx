@@ -7,6 +7,8 @@ import { Navigate } from 'react-router-dom';
  */
 
 export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
+  // colon: giving a new name
+  // =: setting a default value
   const { isLoggedIn } = useAuth();
 
   return isLoggedIn ? <Navigate to={redirectTo} /> : Component;

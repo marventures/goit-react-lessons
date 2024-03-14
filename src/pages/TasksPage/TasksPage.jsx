@@ -17,7 +17,7 @@ const TasksPage = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Your tasks</title>
+        <title>Your tasks....</title>
       </Helmet>
       <TaskEditor />
       <div>{isLoading && 'Request in progress...'}</div>
